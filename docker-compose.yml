@@ -48,7 +48,7 @@ services:
   ui:
     image: dist-ci
     environment:
-      SQLALCHEMY_DATABASE_URI: "mysql+pymysql://distci:distsit@dist-ci-db/distci"
+      SQLALCHEMY_DATABASE_URI: "mysql+pymysql://distci:distdist@dist-ci-db/distci"
       FLASK_AUTO_MIGRATE: /data/.dist-db-migrate.lock
       FLASK_APP: dist_ci.app:app
       FLASK_DEBUG: 1
