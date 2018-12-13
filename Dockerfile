@@ -1,14 +1,14 @@
 FROM jobserv
 
-ARG GAVEL_VERSION=?
-ENV APP_VERSION="$GAVEL_VERSION"
+ARG DIST_CI_VERSION=?
+ENV APP_VERSION="$DIST_CI_VERSION"
 
-ENV PYTHONPATH=/srv/gavel-ci:/srv/jobserv
+ENV PYTHONPATH=/srv/dist-ci:/srv/jobserv
 
-RUN mkdir -p /srv/gavel-ci
-COPY ./docker_run.sh /srv/gavel-ci/docker_run.sh
-COPY ./gavel_ci /srv/gavel-ci/gavel_ci
-COPY ./jobserv_gavel_ci /srv/gavel-ci/jobserv_gavel_ci
-COPY ./migrations /srv/gavel-ci/migrations
+RUN mkdir -p /srv/dist-ci
+COPY ./docker_run.sh /srv/dist-ci/docker_run.sh
+COPY ./gavel_ci /srv/dist-ci/dist_ci
+COPY ./jobserv_dist_ci /srv/dist-ci/jobserv_dist_ci
+COPY ./migrations /srv/dist-ci/migrations
 
 RUN pip3 install Flask-Dance[sqla]==1.0.0 Flask-Login==0.4.1 pyjwt==1.6.4

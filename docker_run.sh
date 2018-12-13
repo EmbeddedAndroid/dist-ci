@@ -2,7 +2,7 @@
 
 # Make sure we are in the proper directory to the correct "migrations" folder
 # is used.
-if [ "$FLASK_APP" == "jobserv_gavel_ci.app:app" ] ; then
+if [ "$FLASK_APP" == "jobserv_dist_ci.app:app" ] ; then
 	cd /srv/jobserv
 
 	[ -d /data/secrets ] || mkdir /data/secrets
@@ -13,7 +13,7 @@ if [ "$FLASK_APP" == "jobserv_gavel_ci.app:app" ] ; then
 	export SECRETS_FERNET_KEY=$(cat $FERNET_FILE)
 	export LOCAL_STORAGE_KEY=$(python3 -c "import secrets; print(secrets.token_urlsafe())")
 else
-	cd /srv/gavel-ci
+	cd /srv/dist-ci
 	if [ -f /data/secrets/GITHUB_CLIENT_ID ] ; then
 		export GITHUB_CLIENT_ID=$(cat /data/secrets/GITHUB_CLIENT_ID)
 	else
@@ -69,7 +69,7 @@ if [ -z "$FLASK_DEBUG" ] ; then
 	if [ -n "$STATSD_HOST" ] ; then
 		STATSD="--statsd-host $STATSD_HOST"
 	fi
-	exec /usr/bin/gunicorn $STATSD -n gavel-ci -w4 -b 0.0.0.0:8000 $FLASK_APP
+	exec /usr/bin/gunicorn $STATSD -n dist-ci -w4 -b 0.0.0.0:8000 $FLASK_APP
 fi
 
 exec /usr/bin/flask run -h 0.0.0.0 -p 8000
