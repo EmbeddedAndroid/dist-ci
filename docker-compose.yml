@@ -27,7 +27,7 @@ services:
       - dist-ci-db_data:/var/lib/mysql
 
   api:
-    image: gavel-ci
+    image: dist-ci
     environment:
       SQLALCHEMY_DATABASE_URI_FMT: "mysql+pymysql://{db_user}:{db_pass}@jobserv-db/jobserv"
       DB_USER: jobserv
