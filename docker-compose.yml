@@ -29,9 +29,7 @@ services:
   api:
     image: dist-ci
     environment:
-      SQLALCHEMY_DATABASE_URI_FMT: "mysql+pymysql://{db_user}:{db_pass}@jobserv-db/jobserv"
-      DB_USER: jobserv
-      DB_PASS: jobservpass
+      SQLALCHEMY_DATABASE_URI: "mysql+pymysql://jobserv:jobserv@jobserv-db/jobserv"
       FLASK_APP: jobserv_dist_ci.app:app
       PERMISSIONS_MODULE: jobserv_dist_ci.permissions
       FLASK_DEBUG: 1
